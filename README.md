@@ -16,16 +16,3 @@ Antes de ejecutar el proyecto, asegúrate de tener instalados:
 Sigue estos pasos para ejecutar la app en tu máquina local:
 
 1. ubicar archivo main.dart dentro de la carpeta app y ejecutar desde consola o desde IDE
-
-## 🚀 Estructura
-
-app/
-├── lib/
-modules/
-├── detail_module/
-├── home_module/
-├── search_module/
-
-package/
-├── core_ui/
-├── shared/

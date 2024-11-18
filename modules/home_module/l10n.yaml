@@ -1,6 +1,6 @@
 arb-dir: lib/l10n
-template-arb-file: search_es.arb
+template-arb-file: home_es.arb
 output-dir: lib/l10n
-output-class: SearchLocalizations
-output-localization-file: search_localizations.dart
+output-class: HomeLocalizations
+output-localization-file: home_localizations.dart
 synthetic-package: false

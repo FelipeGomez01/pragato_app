@@ -1,0 +1,6 @@
+arb-dir: lib/l10n
+template-arb-file: detail_es.arb
+output-dir: lib/l10n
+output-class: DetailLocalizations
+output-localization-file: detail_localizations.dart
+synthetic-package: false

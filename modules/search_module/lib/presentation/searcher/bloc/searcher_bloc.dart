@@ -1,37 +1,37 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared/entities/base_data_entity.dart';
-import 'package:home_module/domain/use_cases/get_list_use_case.dart';
-import 'package:home_module/utils/status.dart';
+import 'package:search_module/domain/use_cases/get_data_use_case.dart';
+import 'package:shared/entities/cat_detail_entity.dart';
+import 'package:shared/utils/status.dart';
 
-part 'list_cats_event.dart';
-part 'list_cats_state.dart';
+part 'searcher_event.dart';
+part 'searcher_state.dart';
 
-class ListCatsBloc extends Bloc<ListCatsEvent, HomeState> {
-  final GetListUseCase getListUseCase;
+class SearcherBloc extends Bloc<SearcherEvent, SearcherState> {
+  final GetDataUseCase getDataUseCase;
 
-  ListCatsBloc({
-    required this.getListUseCase
-  }) : super(const HomeState()) {
-    on<GetListEvent>(_onLoadHome);
+  SearcherBloc({
+    required this.getDataUseCase
+  }) : super(const SearcherState()) {
+    on<GetDataEvent>(_onGetData);
   }
 
-  void _onLoadHome(GetListEvent event, Emitter<HomeState> emit) async {
-    //emit(state.copyWith(homeStatus: Status.loading));
+  void _onGetData(GetDataEvent event, Emitter<SearcherState> emit) async {
+    emit(state.copyWith(searcherStatus: Status.loading));
 
-    final homeData = await getListUseCase.run();
+    final results = await getDataUseCase.run(event.query);
 
-    homeData.fold(
+    results.fold(
       (failure) => emit(
         state.copyWith(
-          homeStatus: Status.error,
+          searcherStatus: Status.error,
           message: failure
         )
       ),
       (success) => emit(
         state.copyWith(
-          homeData: success,
-          homeStatus: Status.success
+          searchData: success,
+          searcherStatus: Status.success
         )
       )
     );

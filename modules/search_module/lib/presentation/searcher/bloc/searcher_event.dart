@@ -1,15 +1,19 @@
-part of 'list_cats_bloc.dart';
+part of 'searcher_bloc.dart';
 
-abstract class ListCatsEvent extends Equatable {
-  const ListCatsEvent();
+abstract class SearcherEvent extends Equatable {
+  const SearcherEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class GetListEvent extends ListCatsEvent {
-  const GetListEvent();
+class GetDataEvent extends SearcherEvent {
+  final String query;
+
+  const GetDataEvent({required this.query});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [
+    query
+  ];
 }

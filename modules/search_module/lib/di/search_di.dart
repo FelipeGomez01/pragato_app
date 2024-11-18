@@ -1,12 +1,17 @@
-import 'package:home_module/data/repositories/home_repository.dart';
-import 'package:home_module/domain/use_cases/get_list_use_case.dart';
+import 'package:search_module/data/datasources/search_datasource.dart';
+import 'package:search_module/data/repositories/search_repository.dart';
+import 'package:search_module/domain/use_cases/get_data_use_case.dart';
 
-class HomeUseCaseDI{
-  HomeUseCaseDI();
+class SearchDI {
+  SearchDI();
 
-  GetListUseCase get getListUseCase {
-    return GetListUseCase(homeRepository: HomeRepository());
+  SearchRepository get searchRepository {
+    return SearchRepository(searchDataSource: SearchDataSource());
+  }
+
+  GetDataUseCase get getDataUseCase {
+    return GetDataUseCase(searchRepository: searchRepository);
   }
 }
 
-final HomeUseCaseDI homeDI = HomeUseCaseDI();
+final SearchDI searchDI = SearchDI();

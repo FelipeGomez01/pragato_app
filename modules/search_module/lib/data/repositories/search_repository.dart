@@ -1,26 +1,27 @@
-import 'dart:developer';
-
 import 'package:either_dart/either.dart';
-import 'package:home_module/data/datasources/home_datasource.dart';
-import 'package:home_module/data/models/base_data_model.dart';
-import 'package:home_module/domain/entities/base_data_entity.dart';
-import 'package:home_module/domain/repositories/i_home_repository.dart';
+import 'package:search_module/data/datasources/search_datasource.dart';
+import 'package:search_module/domain/repositories/i_search_repository.dart';
+import 'package:shared/entities/cat_detail_entity.dart';
+import 'package:shared/models/cat_detail_model/cat_detail_model.dart';
 
-class HomeRepository implements IHomeRepository {
-  final _homeDataSource = HomeDataSource();
+class SearchRepository implements ISearchRepository {
+  final SearchDataSource searchDataSource;
+
+  const SearchRepository({
+    required this.searchDataSource
+  });
 
   @override
-  Future<Either<dynamic, List<BaseDataEntity>>> getHomeData() async {
+  Future<Either<dynamic, List<CatDetailEntity>>> getSearchResults(String query) async {
     try{
-      final data = await _homeDataSource.getDataList();
+      final data = await searchDataSource.getSearchResults(query);
 
-      final list = data.map<BaseDataEntity>(
-        (item) => BaseDataModel.fromJson(item).toBaseDataEntity()
+      final list = data.map<CatDetailEntity>(
+        (item) => CatDetailModel.fromJson(item).toCatDetailEntity()
       ).toList();
 
       return Right(list);
     } catch(e) {
-      print('repository: $e');
       return Left(e.toString());
     }
   }

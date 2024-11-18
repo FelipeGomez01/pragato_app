@@ -1,44 +1,91 @@
 import 'package:equatable/equatable.dart';
-import 'package:shared/models/weight_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared/entities/cat_detail_entity.dart';
+import 'package:shared/models/image/image_model.dart';
+import 'package:shared/models/weight_model/weight_model.dart';
 
+part 'cat_detail_model.g.dart';
+
+@JsonSerializable(
+  fieldRename: FieldRename.snake
+)
 class CatDetailModel extends Equatable {
+  @JsonKey(name: "weight")
   final WeightModel weight;
+  @JsonKey(name: "id")
   final String id;
+  @JsonKey(name: "name")
   final String name;
-  final String cfaUrl;
-  final String vetstreetUrl;
-  final String vcahospitalsUrl;
+  @JsonKey(name: "cfa_url")
+  final String? cfaUrl;
+  @JsonKey(name: "vetstreet_url")
+  final String? vetstreetUrl;
+  @JsonKey(name: "vcahospitals_url")
+  final String? vcahospitalsUrl;
+  @JsonKey(name: "temperament")
   final String temperament;
+  @JsonKey(name: "origin")
   final String origin;
+  @JsonKey(name: "country_codes")
   final String countryCodes;
+  @JsonKey(name: "country_code")
   final String countryCode;
+  @JsonKey(name: "description")
   final String description;
+  @JsonKey(name: "life_span")
   final String lifeSpan;
+  @JsonKey(name: "indoor")
   final int indoor;
-  final int lap;
-  final String altNames;
+  @JsonKey(name: "lap")
+  final int? lap;
+  @JsonKey(name: "alt_names")
+  final String? altNames;
+  @JsonKey(name: "adaptability")
   final int adaptability;
+  @JsonKey(name: "affection_level")
   final int affectionLevel;
+  @JsonKey(name: "child_friendly")
   final int childFriendly;
+  @JsonKey(name: "dog_friendly")
   final int dogFriendly;
+  @JsonKey(name: "energy_level")
   final int energyLevel;
+  @JsonKey(name: "grooming")
   final int grooming;
+  @JsonKey(name: "health_issues")
   final int healthIssues;
+  @JsonKey(name: "intelligence")
   final int intelligence;
+  @JsonKey(name: "shedding_level")
   final int sheddingLevel;
+  @JsonKey(name: "social_needs")
   final int socialNeeds;
+  @JsonKey(name: "stranger_friendly")
   final int strangerFriendly;
+  @JsonKey(name: "vocalisation")
   final int vocalisation;
+  @JsonKey(name: "experimental")
   final int experimental;
+  @JsonKey(name: "hairless")
   final int hairless;
+  @JsonKey(name: "natural")
   final int natural;
+  @JsonKey(name: "rare")
   final int rare;
+  @JsonKey(name: "rex")
   final int rex;
+  @JsonKey(name: "suppressed_tail")
   final int suppressedTail;
-  final int shortLegs;
-  final String wikipediaUrl;
+  @JsonKey(name: "short_legs")
+  final int? shortLegs;
+  @JsonKey(name: "wikipedia_url")
+  final String? wikipediaUrl;
+  @JsonKey(name: "hypoallergenic")
   final int hypoallergenic;
-  final String referenceImageId;
+  @JsonKey(name: "reference_image_id")
+  final String? referenceImageId;
+  @JsonKey(name: "image")
+  final ImageModel? image;
 
   const CatDetailModel({
     required this.weight,
@@ -78,7 +125,13 @@ class CatDetailModel extends Equatable {
     required this.wikipediaUrl,
     required this.hypoallergenic,
     required this.referenceImageId,
+    this.image
   });
+
+  factory CatDetailModel.fromJson(Map<String, dynamic> json) =>
+      _$CatDetailModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CatDetailModelToJson(this);
 
   CatDetailModel copyWith({
     WeightModel? weight,
@@ -118,6 +171,7 @@ class CatDetailModel extends Equatable {
     String? wikipediaUrl,
     int? hypoallergenic,
     String? referenceImageId,
+    ImageModel? image
   }) =>
       CatDetailModel(
         weight: weight ?? this.weight,
@@ -157,6 +211,7 @@ class CatDetailModel extends Equatable {
         wikipediaUrl: wikipediaUrl ?? this.wikipediaUrl,
         hypoallergenic: hypoallergenic ?? this.hypoallergenic,
         referenceImageId: referenceImageId ?? this.referenceImageId,
+        image: image ?? this.image,
       );
 
   @override
@@ -197,6 +252,51 @@ class CatDetailModel extends Equatable {
     shortLegs,
     wikipediaUrl,
     hypoallergenic,
-    referenceImageId
+    referenceImageId,
+    image
   ];
+}
+
+extension CatDetailModelExt on CatDetailModel {
+  CatDetailEntity toCatDetailEntity({String? fullImageUrl}) => CatDetailEntity(
+    weight: weight.toWeightEntity(),
+    id: id,
+    name: name,
+    cfaUrl: cfaUrl,
+    vetstreetUrl: vetstreetUrl,
+    vcahospitalsUrl: vcahospitalsUrl,
+    temperament: temperament,
+    origin: origin,
+    countryCodes: countryCodes,
+    countryCode: countryCode,
+    description: description,
+    lifeSpan: lifeSpan,
+    indoor: indoor,
+    lap: lap,
+    altNames: altNames,
+    adaptability: adaptability,
+    affectionLevel: affectionLevel,
+    childFriendly: childFriendly,
+    dogFriendly: dogFriendly,
+    energyLevel: energyLevel,
+    grooming: grooming,
+    healthIssues: healthIssues,
+    intelligence: intelligence,
+    sheddingLevel: sheddingLevel,
+    socialNeeds: socialNeeds,
+    strangerFriendly: strangerFriendly,
+    vocalisation: vocalisation,
+    experimental: this.experimental,
+    hairless: hairless,
+    natural: natural,
+    rare: rare,
+    rex: rex,
+    suppressedTail: suppressedTail,
+    shortLegs: shortLegs,
+    wikipediaUrl: wikipediaUrl,
+    hypoallergenic: hypoallergenic,
+    referenceImageId: referenceImageId,
+    fullImageUrl: fullImageUrl,
+    image: image?.toImageEntity()
+  );
 }

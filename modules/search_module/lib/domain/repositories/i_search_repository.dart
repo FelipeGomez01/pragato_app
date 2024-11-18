@@ -1,6 +1,6 @@
 import 'package:either_dart/either.dart';
-import 'package:home_module/domain/entities/base_data_entity.dart';
+import 'package:shared/entities/cat_detail_entity.dart';
 
-abstract class IHomeRepository {
-  Future<Either<dynamic, List<BaseDataEntity>>> getHomeData();
+abstract class ISearchRepository {
+  Future<Either<dynamic, List<CatDetailEntity>>> getSearchResults(String query);
 }

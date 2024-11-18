@@ -1,19 +1,18 @@
 import 'dart:async';
 import 'package:either_dart/either.dart';
-import 'package:shared/entities/base_data_entity.dart';
+import 'package:search_module/domain/repositories/i_search_repository.dart';
+import 'package:shared/entities/cat_detail_entity.dart';
 
-import '../repositories/i_home_repository.dart';
+class GetDataUseCase {
+  final ISearchRepository searchRepository;
 
-class GetListUseCase {
-  final IHomeRepository homeRepository;
-
-  const GetListUseCase({
-    required this.homeRepository
+  const GetDataUseCase({
+    required this.searchRepository
   });
 
-  Future<Either<dynamic, List<BaseDataEntity>>> run() async {
+  Future<Either<dynamic, List<CatDetailEntity>>> run(String query) async {
     try{
-      final data = await homeRepository.getHomeData();
+      final data = await searchRepository.getSearchResults(query);
 
       return Right(data.right);
     } catch (e){

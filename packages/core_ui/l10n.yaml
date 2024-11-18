@@ -1,6 +1,6 @@
 arb-dir: lib/l10n
-template-arb-file: detail_es.arb
+template-arb-file: search_es.arb
 output-dir: lib/l10n
-output-class: DetailLocalizations
-output-localization-file: detail_localizations.dart
+output-class: CoreUILocalizations
+output-localization-file: core_ui_localizations.dart
 synthetic-package: false

@@ -1,0 +1,37 @@
+name: search_module
+description: "searcher module"
+publish_to: 'none'
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.5.4
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  dio: ^5.7.0
+  either_dart: ^1.0.0
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
+  shared:
+    path: ../../packages/shared
+  core_ui:
+    path: ../../packages/core_ui
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.13
+  mockito: ^5.4.4
+
+flutter:
+  # To add assets to your plugin package, add an assets section, like this:
+  # assets:
+  #   - image/a_dot_burr.jpeg
+  #   - image/a_dot_ham.jpeg
+

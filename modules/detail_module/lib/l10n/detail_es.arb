@@ -1,3 +1,13 @@
 {
-  "detail": "detalle"
+  "countryOrigin": "Pais de Origen",
+  "intelligence": "Inteligencia",
+  "adaptability": "Adaptabilidad",
+  "affectionLevel": "Nivel Afectivo",
+  "childFriendly": "Apto para niños",
+  "dogFriendly": "Apto para perros",
+  "energyLevel": "Nivel de energía",
+  "grooming": "Arreglo",
+  "healthIssues": "Problemas de salud",
+  "socialNeeds": "Necesidades sociales",
+  "strangerFriendly": "Extraño amigable"
 }

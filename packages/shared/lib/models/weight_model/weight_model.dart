@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shared/entities/weight_entity.dart';
 
 part 'weight_model.g.dart';
 
@@ -34,4 +35,11 @@ class WeightModel extends Equatable {
     imperial,
     metric
   ];
+}
+
+extension WeightModelExt on WeightModel {
+  WeightEntity toWeightEntity() => WeightEntity(
+    imperial: imperial,
+    metric: metric
+  );
 }

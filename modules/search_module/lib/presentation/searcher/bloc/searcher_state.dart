@@ -1,32 +1,30 @@
-part of 'list_cats_bloc.dart';
+part of 'searcher_bloc.dart';
 
-class HomeState extends Equatable {
-  final Status homeStatus;
+class SearcherState extends Equatable {
+  final Status searcherStatus;
   final String message;
-  final List<BaseDataEntity>? homeData;
+  final List<CatDetailEntity>? searchData;
 
-  const HomeState({
-    this.homeStatus = Status.loading,
+  const SearcherState({
+    this.searcherStatus = Status.undefined,
     this.message = '',
-    this.homeData
+    this.searchData
   });
 
-  HomeState copyWith({
-    Status? homeStatus,
-    List<BaseDataEntity>? homeData,
+  SearcherState copyWith({
+    Status? searcherStatus,
+    List<CatDetailEntity>? searchData,
     String? message
-  }) {
-    return HomeState(
-      homeStatus: homeStatus ?? this.homeStatus,
-      message: message ?? this.message,
-      homeData: homeData ?? this.homeData
-    );
-  }
+  }) => SearcherState(
+    searcherStatus: searcherStatus ?? this.searcherStatus,
+    message: message ?? this.message,
+    searchData: searchData ?? this.searchData
+  );
 
   @override
   List<Object?> get props => [
-    homeStatus,
+    searcherStatus,
     message,
-    homeData
+    searchData
   ];
 }

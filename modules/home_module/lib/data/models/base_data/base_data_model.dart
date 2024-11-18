@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shared/entities/base_data_entity.dart';
+import 'package:home_module/domain/entities/base_data_entity.dart';
 import 'package:shared/models/cat_detail_model/cat_detail_model.dart';
 
 part 'base_data_model.g.dart';

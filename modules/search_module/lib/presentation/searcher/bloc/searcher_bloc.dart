@@ -14,6 +14,7 @@ class SearcherBloc extends Bloc<SearcherEvent, SearcherState> {
     required this.getDataUseCase
   }) : super(const SearcherState()) {
     on<GetDataEvent>(_onGetData);
+    on<ClearDataEvent>(_onClearData);
   }
 
   void _onGetData(GetDataEvent event, Emitter<SearcherState> emit) async {
@@ -35,5 +36,16 @@ class SearcherBloc extends Bloc<SearcherEvent, SearcherState> {
         )
       )
     );
+  }
+
+  void _onClearData(ClearDataEvent event, Emitter<SearcherState> emit) async {
+    emit(
+      state.copyWith(
+        searcherStatus: Status.undefined,
+        searchData: null
+      )
+    );
+
+
   }
 }

@@ -23,6 +23,20 @@ class SearcherComponent extends StatefulWidget {
 
 class SearcherComponentState extends State<SearcherComponent> {
   final TextEditingController _searchController = TextEditingController();
+  late final SearcherBloc _searcherBloc;
+
+  @override
+  void initState() {
+    _searcherBloc = context.read<SearcherBloc>();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    _searcherBloc.add(const ClearDataEvent());
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +60,8 @@ class SearcherComponentState extends State<SearcherComponent> {
               ),
               const SizedBox(width: 10),
               ElevatedButton(
-                onPressed: () {
-                  final searcherBloc = context.read<SearcherBloc>();
-                  searcherBloc.add(GetDataEvent(query: _searchController.text));
-                },
+                onPressed: () =>
+                    _searcherBloc.add(GetDataEvent(query: _searchController.text)),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 ),

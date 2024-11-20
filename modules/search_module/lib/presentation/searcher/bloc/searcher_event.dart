@@ -17,3 +17,10 @@ class GetDataEvent extends SearcherEvent {
     query
   ];
 }
+
+class ClearDataEvent extends SearcherEvent {
+  const ClearDataEvent();
+
+  @override
+  List<Object> get props => [];
+}
